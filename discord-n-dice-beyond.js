@@ -44,7 +44,7 @@ function addButton(){
         request.setRequestHeader('Content-type', 'application/json');
 
         var params ={
-            "content": "!1d20",
+            "content": "!1d20 #"+characterName,
             "username": characterName,
             "avatar_url": avatarUrl
           }
