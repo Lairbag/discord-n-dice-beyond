@@ -10,7 +10,7 @@ function saveOptions(e) {
     }
     else{
         e.preventDefault();
-        browser.storage.sync.set({
+        getBrowserNamespace().storage.sync.set({
             webhookUrl: urlToSave
         });
 
@@ -23,6 +23,8 @@ function saveOptions(e) {
   function restoreOptions() {
   
     function setCurrentChoice(result) {
+      if(!result.webhookUrl)
+        result.webhookUrl = "";
       document.querySelector("#webhookUrl").value = result.webhookUrl;
     }
   
@@ -30,9 +32,25 @@ function saveOptions(e) {
       console.log(`Error: ${error}`);
     }
   
-    var getting = browser.storage.sync.get("webhookUrl");
-    getting.then(setCurrentChoice, onError);
+    storageSyncGet("webhookUrl", setCurrentChoice, onError);
+  }
+
+  function getBrowserNamespace(){
+    if(window.chrome)
+        return chrome;
+
+    return browser;
   }
   
+  function storageSyncGet(key, onGot, onError){
+    if(window.chrome){
+        chrome.storage.sync.get(key,onGot);
+    }
+    else{
+        var getting = browser.storage.sync.get(key);
+        getting.then(onGot, onError);
+    }    
+}
+
   document.addEventListener("DOMContentLoaded", restoreOptions);
   document.querySelector("form").addEventListener("submit", saveOptions);

@@ -1,5 +1,5 @@
 function addButton(){    
-    var diceIconUrl = browser.extension.getURL("icons/d20-48.png");
+    var diceIconUrl = getBrowserNamespace().extension.getURL("icons/d20-48.png");
     var htmlButton = '<div id="diceButton" style="cursor: pointer; position: fixed; bottom: 5px; left: 5px; z-index 60002"><img src="'+diceIconUrl+'" alt="Roll the dice"></img></div>';
     document.getElementById("site-main").insertAdjacentHTML("beforeend", htmlButton);
 
@@ -18,7 +18,7 @@ function addButton(){
                 catch(e)
                 {
                     useLocalDice();
-                    console.exception(e);
+                    console.error(e);
                 }                    
             }
             else{
@@ -26,10 +26,8 @@ function addButton(){
             }
         }
         
-        var getting = browser.storage.sync.get("webhookUrl");
-        getting.then(onGot, onError);
+        storageSyncGet("webhookUrl", onGot, onError);
     }
-
 
     function useDiceParserOnDiscord(webhookUrl){
         var characterName = document.getElementsByClassName("ct-character-tidbits__name")[0].innerText;
@@ -38,8 +36,7 @@ function addButton(){
         var patt = new RegExp("https.*[png]");
         var avatarUrl = patt.exec(str)[0];
         
-        //https://discourse.mozilla.org/t/webextension-xmlhttprequest-issues-no-cookies-or-referrer-solved/11224/9
-        var request = XPCNativeWrapper(new window.wrappedJSObject.XMLHttpRequest());
+        var request = getXHRRequest();
         request.open("POST", webhookUrl);
         request.setRequestHeader('Content-type', 'application/json');
 
@@ -47,7 +44,7 @@ function addButton(){
             "content": "!1d20 #"+characterName,
             "username": characterName,
             "avatar_url": avatarUrl
-          }
+          };
           
         request.send(JSON.stringify(params));
     }
@@ -61,6 +58,31 @@ function addButton(){
         var max = Math.floor(20);
         alert(Math.floor(Math.random() * (max - min +1)) + min);
     }
+}
+
+function getXHRRequest(){    
+    if(window.chrome)
+        return new XMLHttpRequest();
+
+    //https://discourse.mozilla.org/t/webextension-xmlhttprequest-issues-no-cookies-or-referrer-solved/11224/9
+    return XPCNativeWrapper(new window.wrappedJSObject.XMLHttpRequest());
+}
+
+function getBrowserNamespace(){
+    if(window.chrome)
+        return chrome;
+
+    return browser;
+}
+
+function storageSyncGet(key, onGot, onError){
+    if(window.chrome){
+        chrome.storage.sync.get(key,onGot);
+    }
+    else{
+        var getting = browser.storage.sync.get(key);
+        getting.then(onGot, onError);
+    }    
 }
 
 //document.body.style.border = "5px solid red";
