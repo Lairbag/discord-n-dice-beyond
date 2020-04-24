@@ -19,7 +19,7 @@ Concernant le lancé de dé :
 # Configuration de Discord
 Pour que l'extension fonctionne, elle a besoin d'un point d'entrée pour communiquer avec Discord.
 Ce point d'entrée s'appelle un Webhook, il se matérialise par une simple URL.
-Il ne doit être ajouté que dans le salon où il y aura des lancés de dès.
+Il ne doit être ajouté que dans le salon où il y aura des lancés de dés.
 
 Le mieux étant de suivre la procédure fournis par Discord : https://support.discordapp.com/hc/fr/articles/228383668-Utiliser-les-Webhooks
 
@@ -34,9 +34,9 @@ Il suffit d'enregistrer l'URL du webhook et tout est prêt pour jouer !
 # A venir
 J'ai plusieurs chantier en tête :
 - DiceParser non obligatoire
-- Ajouter d'autres dès sur les compétences
+- Ajouter d'autres dés sur les compétences
 - Avoir l'option de lancer un dés avec avantage/désavantage
-- configuration de la couleur du dès affiché sur D&D Beyond
+- configuration de la couleur du dés affiché sur D&D Beyond
 - un peu de style sur la fenêtre de configuration
-- possibilité de lancer plusier dès facilement
-- possibilité de lancer d'autres type de dès
+- possibilité de lancer plusier dés facilement
+- possibilité de lancer d'autres type de dés
