@@ -12,3 +12,4 @@ echo F|xcopy /Q /Y /F ".\discord-n-dice-beyond.js" ".\%destination%\discord-n-di
 
 echo R|xcopy /S /Q /Y /F ".\icons" ".\%destination%\icons"
 echo R|xcopy /S /Q /Y /F ".\popup" ".\%destination%\popup"
+echo R|xcopy /S /Q /Y /F ".\lib" ".\%destination%\lib"

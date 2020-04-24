@@ -29,7 +29,6 @@ Il suffit d'enregistrer l'URL du webhook et tout est prêt pour jouer !
 
 # A venir
 J'ai plusieurs chantier en tête :
-- Nettoyer le code
 - DiceParser non obligatoire
 - Ajouter d'autres dès sur les compétences
 - Avoir l'option de lancer un dés avec avantage/désavantage
