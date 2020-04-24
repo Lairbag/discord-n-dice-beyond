@@ -1,6 +1,8 @@
 # Discord&Dice Beyond
 Webextension that allow yout to roll dice (with dice parser) into your discord channel from your D&amp;D Beyond character sheet
 
+![](Presentation.png)
+
 # Présentation
 Cette extension (Firefox et Chromium) à pour vocation de simplifier les lancés de dés pour les joueurs utilisant Discord et D&D Beyond.
 
@@ -25,7 +27,9 @@ Le mieux étant de suivre la procédure fournis par Discord : https://support.di
 Après installation de l'extension, un D20 est visible en haut à droite avec les autres extensions.
 Il suffit d'enregistrer l'URL du webhook et tout est prêt pour jouer !
 
-![](Presentation.png)
+# Un petit Gif sur la configuration de Discord et de l'extension
+
+![](tuto/tuto.gif)
 
 # A venir
 J'ai plusieurs chantier en tête :
