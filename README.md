@@ -7,6 +7,8 @@ Webextension that allow yout to roll dice (with dice parser) into your discord c
 Cette extension (Firefox et Chromium) à pour vocation de simplifier les lancés de dés pour les joueurs utilisant Discord et D&D Beyond.
 
 Un D20 apparaîtra en bas à gauche de la fiche de personnage (**il faut être connecté à son compte**). Au clique sur celui-ci, le lancé de dé se fera automatiquement sur le salon Discord correspondant.
+Il y a également un dés à côté de chaque compétence pour faire le jet en prenant en compte le modificateur.
+
 Petit plus, le nom et l'avatar du personnage seront visible sur Discord.
 
 Concernant le lancé de dé : 
@@ -33,6 +35,8 @@ Il suffit d'enregistrer l'URL du webhook et tout est prêt pour jouer !
 
 # A venir
 J'ai plusieurs chantier en tête :
+- Recharger automatiquement l'onglet D&D Beyond lors du changement de configuration
+- Gérer les dès de dégat/repos
 - DiceParser non obligatoire
 - Avoir l'option de lancer un dés avec avantage/désavantage
 - configuration de la couleur du dés affiché sur D&D Beyond

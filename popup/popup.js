@@ -16,7 +16,7 @@ function saveOptions(e) {
     e.preventDefault();
     browserManager.storageSyncSet({webhookUrl: urlToSave});
     //TODO : a automatiser
-    alert('Vous pouvez actualiser la fenêtre D&D Beyond pour prendre en compte les changements.');
+    alert("Merci d'actualiser D&DBeyond.");
     window.close();
   }    
 }
