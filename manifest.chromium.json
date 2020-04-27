@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
     "name": "Discord&Dice Beyond",
-    "version": "1.1",
+    "version": "1.2",
   
     "description": "Roll dice into your Discord from D&DBeyond character sheet. Lance les dès dans ton Discord depuis ta fiche de personnage D&DBeyond.",
   
@@ -30,6 +30,9 @@
     },
 
     "web_accessible_resources": [
-      "icons/d20-48.png"
+      "icons/d20-16.png",
+      "icons/d20-32.png",
+      "icons/d20-48.png",
+      "icons/d20-96.png"
     ]
   }
