@@ -1,8 +1,7 @@
 document.addEventListener('DOMContentLoaded', initDiscordNDiceBeyond());
 
 function initDiscordNDiceBeyond(){
-    console.log("initDiscordNDiceBeyond");
-    
+  
     var millisecondsToWait = 3000;
     setTimeout(function() {
         var skillsLoaded = document.querySelectorAll(".ct-signed-number").length > 0;
@@ -11,7 +10,7 @@ function initDiscordNDiceBeyond(){
             addDice();
         }
         else{
-            console.log("D&D is still loading, can't load dice.")
+            console.log("D&D beyond is still loading, can't load dice.")
             initDiscordNDiceBeyond();
         }
     }, millisecondsToWait);
@@ -28,6 +27,21 @@ function addDice(){
 }
 
 function addSkillDice(browserManager, dice){
+    var self = this;
+    self.hideSidebar = function(){
+        var sideBar = document.querySelector('[data-original-title="Hide Sidebar"]');
+        if(sideBar)
+        {
+            sideBar.click();
+        }
+        else{
+            var millisecondsToWait = 1000;
+            setTimeout(function() {
+                hideSidebar();
+            }, millisecondsToWait);
+        }
+    }
+
     var diceIconUrl = browserManager.extensionGetUrl("./icons/d20-16.png");    
     var i =0;
     document.querySelectorAll(".ct-signed-number").forEach(element => {
@@ -43,7 +57,7 @@ function addSkillDice(browserManager, dice){
             element.insertAdjacentHTML("beforeend", htmlButton); 
     
             document.querySelector("#"+id).onclick = function(e){
-                //hideSideBar();
+                self.hideSidebar();
                 
                 dice.roll(browserManager, skillMod);            
                 //e.preventDefault();
@@ -51,20 +65,6 @@ function addSkillDice(browserManager, dice){
         }        
     });
 }
-
-// function hideSidebar(){
-//     var sideBar = document.querySelector('[data-original-title="Hide Sidebar"]');
-//     if(sideBar)
-//     {
-//         sideBar.click();
-//     }
-//     else{
-//         var millisecondsToWait = 1000;
-//         setTimeout(function() {
-//             hideSidebar();
-//         }, millisecondsToWait);
-//     }
-// }
 
 function addMainDie(browserManager, dice){    
 
@@ -76,5 +76,3 @@ function addMainDie(browserManager, dice){
         dice.roll(browserManager, null);
     }
 }
-
-
