@@ -34,9 +34,8 @@ Il suffit d'enregistrer l'URL du webhook et tout est prêt pour jouer !
 # A venir
 J'ai plusieurs chantier en tête :
 - DiceParser non obligatoire
-- Ajouter d'autres dés sur les compétences
 - Avoir l'option de lancer un dés avec avantage/désavantage
 - configuration de la couleur du dés affiché sur D&D Beyond
 - un peu de style sur la fenêtre de configuration
-- possibilité de lancer plusier dés facilement
+- possibilité de lancer plusieur dés facilement
 - possibilité de lancer d'autres type de dés
