@@ -36,7 +36,7 @@ Il suffit d'enregistrer l'URL du webhook et tout est prêt pour jouer !
 # A venir
 J'ai plusieurs chantier en tête :
 - Recharger automatiquement l'onglet D&D Beyond lors du changement de configuration
-- Gérer les dès de dégat/repos
+- Gérer les dés de dégat/repos
 - DiceParser non obligatoire
 - Avoir l'option de lancer un dés avec avantage/désavantage
 - configuration de la couleur du dés affiché sur D&D Beyond
