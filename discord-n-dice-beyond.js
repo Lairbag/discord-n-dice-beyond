@@ -23,7 +23,7 @@ function addDice(){
     addMainDie(browserManager, dice);
     addSkillDice(browserManager, dice);
 
-    window.onresize = function(){console.log("resize");;addSkillDice(browserManager, dice);}
+    window.onresize = function(){addSkillDice(browserManager, dice);}
 }
 
 function addSkillDice(browserManager, dice){
