@@ -31,22 +31,8 @@ function addDice(){
 }
 
 function addSkillDice(browserManager, dice){
-    var self = this;
-    self.hideSidebar = function(){
-        var sideBar = document.querySelector('[data-original-title="Hide Sidebar"]');
-        if(sideBar)
-        {
-            sideBar.click();
-        }
-        else{
-            var millisecondsToWait = 1000;
-            setTimeout(function() {
-                hideSidebar();
-            }, millisecondsToWait);
-        }
-    }
-
-    var diceIconUrl = browserManager.extensionGetUrl("./icons/d20-16.png");    
+    var iconUrl = browserManager.extensionGetUrl("./icons/d20-16.png");    
+    var style = "cursor: pointer; z-index 60002";
     var i =0;
     document.querySelectorAll(".ct-signed-number").forEach(element => {
         var skillMod = "";
@@ -55,37 +41,14 @@ function addSkillDice(browserManager, dice){
         });
 
         var id = "diceButton_skill_"+(i++);   
-        if(document.querySelector("#"+id) === null){
-            var htmlButton = '<div id="'+id+'" style="cursor: pointer; z-index 60002"><img src="'+diceIconUrl+'" alt="Roll the skill die"></img></div>';
-
-            element.insertAdjacentHTML("beforeend", htmlButton); 
-    
-            document.querySelector("#"+id).onclick = function(e){
-                self.hideSidebar();
-                
-                dice.roll(browserManager, 1, 20, skillMod);
-            };
-        }        
+        addDiceButtonToDom(iconUrl, id, "Roll the skill dice !", element, style, true, browserManager, dice, 1, 20, skillMod);
     });
 }
 
-function addDamageDice(browserManager, dice){
-    var self = this;
-    self.hideSidebar = function(){
-        var sideBar = document.querySelector('[data-original-title="Hide Sidebar"]');
-        if(sideBar)
-        {
-            sideBar.click();
-        }
-        else{
-            var millisecondsToWait = 1000;
-            setTimeout(function() {
-                hideSidebar();
-            }, millisecondsToWait);
-        }
-    }
+function addDamageDice(browserManager, dice){    
+    var iconUrl = browserManager.extensionGetUrl("./icons/d20-16.png");  
+    var style = "cursor: pointer; display: inline-block";
 
-    var diceIconUrl = browserManager.extensionGetUrl("./icons/d20-16.png");    
     var i =0;
     document.querySelectorAll(".ct-damage__value").forEach(element => {
         var patt = new RegExp("^[0-9]*d[0-9]*[+-][0-9]*");
@@ -107,17 +70,8 @@ function addDamageDice(browserManager, dice){
                     mod = patt.exec(element.innerHTML);
                 }
                 
-                var id = "diceButton_damage_"+(i++);   
-                if(document.querySelector("#"+id) === null){
-                    var htmlButton = '<div id="'+id+'" style="cursor: pointer; display: inline-block"><img src="'+diceIconUrl+'" alt="Roll the damage die"></img></div>';
-    
-                    element.insertAdjacentHTML("beforeend", htmlButton); 
-            
-                    document.querySelector("#"+id).onclick = function(e){
-                        self.hideSidebar();
-                        dice.roll(browserManager, numberOfDice, diceKind, mod);
-                    };
-                }
+                var id = "diceButton_damage_"+(i++);                
+                addDiceButtonToDom(iconUrl, id, "Roll the damage dice !", element, style, true, browserManager, dice, numberOfDice, diceKind, mod);
             }   
             catch(e)
             {
@@ -128,12 +82,38 @@ function addDamageDice(browserManager, dice){
 }
 
 function addMainDie(browserManager, dice){    
+    var iconUrl = browserManager.extensionGetUrl("./icons/d20-48.png");
+    var parent = document.querySelector("#site-main");
+    var style = "cursor: pointer; position: fixed; bottom: 5px; left: 5px; z-index 60002";
 
-    var diceIconUrl = browserManager.extensionGetUrl("./icons/d20-48.png");
-    var htmlButton = '<div id="diceButton" style="cursor: pointer; position: fixed; bottom: 5px; left: 5px; z-index 60002"><img src="'+diceIconUrl+'" alt="Roll the dice"></img></div>';
-    document.querySelector("#site-main").insertAdjacentHTML("beforeend", htmlButton);
+    addDiceButtonToDom(iconUrl, "mainDieButton", "Roll it !", parent, style, false, browserManager, dice, 1, 20, null);
+}
 
-    document.querySelector("#diceButton").onclick = function(e){
-        dice.roll(browserManager, 4, 20, null);
+function addDiceButtonToDom(iconUrl, id, alt, parent, style, shouldHideSideBar, browserManager, dice, numberOfDice, diceKind, mod){
+    var self = this;
+    self.hideSidebar = function(){
+        var sideBar = document.querySelector('[data-original-title="Hide Sidebar"]');
+        if(sideBar)
+        {
+            sideBar.click();
+        }
+        else{
+            var millisecondsToWait = 1000;
+            setTimeout(function() {
+                hideSidebar();
+            }, millisecondsToWait);
+        }
+    }
+
+    if(document.querySelector("#"+id) === null){
+        var htmlButton = '<div id="'+id+'" style="'+style+'"><img src="'+iconUrl+'" alt="'+alt+'"></img></div>';
+
+        parent.insertAdjacentHTML("beforeend", htmlButton); 
+
+        document.querySelector("#"+id).onclick = function(e){
+            if(shouldHideSideBar)
+                self.hideSidebar();
+            dice.roll(browserManager, numberOfDice, diceKind, mod);
+        };
     }
 }
