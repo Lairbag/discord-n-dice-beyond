@@ -28,6 +28,31 @@ function addDice(){
         addSkillDice(browserManager, dice);
         addDamageDice(browserManager, dice);
     }
+
+    document.querySelector(".ct-primary-box__tab--actions").onclick = function(){
+        setTimeout(function() {
+            
+            addDamageDice(browserManager, dice);
+            document.querySelectorAll('.ct-tab-options__header').forEach(element => {  
+                element.onclick = function(){
+                    console.log("click 2");
+                    setTimeout(function() {
+                        addDamageDice(browserManager, dice);
+                    }, 1000);            
+                }
+            });
+
+        }, 1000);     
+    };
+
+    document.querySelectorAll('.ct-tab-options__header').forEach(element => {  
+        element.onclick = function(){
+            console.log("click 2");
+            setTimeout(function() {
+                addDamageDice(browserManager, dice);
+            }, 1000);            
+        }
+    });
 }
 
 function addSkillDice(browserManager, dice){
