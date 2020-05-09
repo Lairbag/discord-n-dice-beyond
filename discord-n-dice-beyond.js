@@ -20,7 +20,7 @@ function addDice(){
     var browserManager = new BrowserManagerFactory().manager;
     var dice = new Dice();
 
-    addMainDie(browserManager, dice);
+    addAllMainDice(browserManager, dice);
     addSkillDice(browserManager, dice);
     addDamageDice(browserManager, dice);
 
@@ -147,12 +147,21 @@ function addDamageDice(browserManager, dice){
     });
 }
 
-function addMainDie(browserManager, dice){    
-    var iconUrl = browserManager.extensionGetUrl("./icons/d20-48.png");
+function addAllMainDice(browserManager, dice){        
     var parent = document.querySelector("#site-main");
-    var style = "cursor: pointer; position: fixed; bottom: 5px; left: 5px; z-index: 60002";
 
-    addDiceButtonToDom(iconUrl, "mainDieButton", "Roll it !", parent, style, false, browserManager, dice, 1, 20, null);
+    addMainDice(20, 5, browserManager, dice, parent);
+    addMainDice(12, 55, browserManager, dice, parent);
+    addMainDice(10, 105, browserManager, dice, parent);
+    addMainDice(8, 155, browserManager, dice, parent);
+    addMainDice(6, 205, browserManager, dice, parent);
+    addMainDice(4, 255, browserManager, dice, parent);
+}
+
+function addMainDice(diceKind, bottomPosition, browserManager, dice, parent){
+    var iconUrl = browserManager.extensionGetUrl("./icons/d"+diceKind+"-48.png");
+    var style = "cursor: pointer; position: fixed; bottom: "+bottomPosition+"px; left: 5px; z-index: 60002;opacity: 65%";
+    addDiceButtonToDom(iconUrl, "mainD"+diceKind+"Button", "Roll it !", parent, style, false, browserManager, dice, 1, diceKind, null);
 }
 
 function addDiceButtonToDom(iconUrl, id, alt, parent, style, shouldHideSideBar, browserManager, dice, numberOfDice, diceKind, mod){
