@@ -37,11 +37,16 @@ function restoreOptions() {
       result.webhookUrl = "";
 
     document.querySelector("#webhookUrl").value = result.webhookUrl;
+    browserManager.storageSyncGet("diceMode", setCurrentChoiceDiceMode, onError);
   }
 
   function setCurrentChoiceDiceMode(result) {
-    if(!result.diceMode)
-      result.diceMode = "localOnly";
+    if(!result.diceMode){
+      if(document.querySelector("#webhookUrl").value.length > 0)
+        result.diceMode = "withDiscordAndDiceParser";
+      else
+        result.diceMode = "localOnly";
+    }
 
     document.querySelector("#"+result.diceMode).checked  = true;
   }
@@ -50,6 +55,5 @@ function restoreOptions() {
     console.log(`Error: ${error}`);
   }
 
-  browserManager.storageSyncGet("webhookUrl", setCurrentChoiceWebhookUrl, onError);
-  browserManager.storageSyncGet("diceMode", setCurrentChoiceDiceMode, onError);
+  browserManager.storageSyncGet("webhookUrl", setCurrentChoiceWebhookUrl, onError);  
 }
