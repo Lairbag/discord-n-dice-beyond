@@ -13,19 +13,20 @@
         <h2>Configuration</h2>
 
         <form>
-          <input id="webhookUrl" type="text" placeholder="Url du Webhook"/>
-          <button type="submit">Valider</button>
-      </form>
+          Url du Webhook :
+          <input style="width:100%" id="webhookUrl" type="text"/>
 
-        <!-- <input id="webhookUrl" type="text" placeholder="Url du Webhook"/>
-        <button id="validWebhookUrl">Valider</button> -->
-        <!-- <br />
-        Fonctionnement du dés :
-        <ul>
-          <li>Sans Discord</li>
-          <li>Avec Discord</li>
-          <li>Avec Discord et DiceParser</li>
-        </ul> -->
+          <br />
+          Fonctionnement du dés :
+          <ul style="list-style:none">
+            <li><input type="radio" name="diceMode" id="localOnly" value="localOnly"><label for="localOnly">Dans le navigateur</label></li>
+            <li><input type="radio" name="diceMode" id="withDiscord" value="withDiscord"><label for="withDiscord">Avec Discord <b>sans DiceParser</b></label></li>
+            <li><input type="radio" name="diceMode" id="withDiscordAndDiceParser" value="withDiscordAndDiceParser"><label for="withDiscordAndDiceParser">Avec Discord <b>et DiceParser</b></label></li>
+          </ul>
+
+          <button type="submit">Valider</button>
+        </form>
+        
         <br />
         <a href="https://github.com/Lairbag/discord-n-dice-beyond/blob/master/README.md">Besoin d'aide pour la configuration ?</a>
     </div>

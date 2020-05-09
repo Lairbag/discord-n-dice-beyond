@@ -3,8 +3,13 @@ document.addEventListener("DOMContentLoaded", restoreOptions);
 document.querySelector("form").addEventListener("submit", saveOptions);
 
 function saveOptions(e) {
-
+  console.log('saveOptions');
   var urlToSave = document.querySelector("#webhookUrl").value;
+  var selectedDiceMode = document.querySelector("[name='diceMode']").value;
+
+  console.log('urlToSave: '+urlToSave);
+  console.log('selectedDiceMode: '+selectedDiceMode);
+
   if(urlToSave !== null)
     urlToSave = urlToSave.trim();
   var startUrl = "https://discordapp.com/api/webhooks/";
@@ -12,26 +17,39 @@ function saveOptions(e) {
   if(urlToSave !== null && urlToSave.length > 0 && !urlToSave.startsWith(startUrl)){
     alert('WebhookUrl doit commencer par '+startUrl);
   }
-  else{
+  else{    
     e.preventDefault();
-    browserManager.storageSyncSet({webhookUrl: urlToSave});
-    //TODO : a automatiser
+
+    var selectedDiceMode = document.querySelector("[name='diceMode']:checked").value;
+    if(urlToSave === "")
+      selectedDiceMode = "localOnly";
+
+    browserManager.storageSyncSet({webhookUrl: urlToSave, diceMode: selectedDiceMode});
+    
     alert("Merci d'actualiser D&DBeyond.");
     window.close();
   }    
 }
-  
-function restoreOptions() {
 
-  function setCurrentChoice(result) {
+function restoreOptions() {
+  function setCurrentChoiceWebhookUrl(result) {
     if(!result.webhookUrl)
       result.webhookUrl = "";
+
     document.querySelector("#webhookUrl").value = result.webhookUrl;
+  }
+
+  function setCurrentChoiceDiceMode(result) {
+    if(!result.diceMode)
+      result.diceMode = "localOnly";
+
+    document.querySelector("#"+result.diceMode).checked  = true;
   }
 
   function onError(error) {
     console.log(`Error: ${error}`);
   }
 
-  browserManager.storageSyncGet("webhookUrl", setCurrentChoice, onError);
+  browserManager.storageSyncGet("webhookUrl", setCurrentChoiceWebhookUrl, onError);
+  browserManager.storageSyncGet("diceMode", setCurrentChoiceDiceMode, onError);
 }
