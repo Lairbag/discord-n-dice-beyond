@@ -81,7 +81,13 @@ function addSkillDice(browserManager, dice){
 }
 
 function addDamageDice(browserManager, dice){    
-    var iconUrl = browserManager.extensionGetUrl("./icons/d20-16.png");  
+    var iconD20 = browserManager.extensionGetUrl("./icons/d20-16.png");
+    var iconD12 = browserManager.extensionGetUrl("./icons/d12-16.png");
+    var iconD10 = browserManager.extensionGetUrl("./icons/d10-16.png");
+    var iconD8 = browserManager.extensionGetUrl("./icons/d8-16.png");
+    var iconD6 = browserManager.extensionGetUrl("./icons/d6-16.png");
+    var iconD4 = browserManager.extensionGetUrl("./icons/d4-16.png");
+
     var style = "cursor: pointer; display: inline-block";
 
     var i =0;
@@ -105,7 +111,32 @@ function addDamageDice(browserManager, dice){
                     mod = patt.exec(element.innerHTML);
                 }
                 
-                var id = "diceButton_damage_"+(i++);                
+                var id = "diceButton_damage_"+(i++);
+                var iconUrl = null;
+                switch(diceKind)
+                {
+
+                    case 12:
+                        iconUrl = iconD12;
+                        break;
+                    case 10:
+                        iconUrl = iconD10;
+                        break;
+                    case 8:
+                        iconUrl = iconD8;
+                        break;
+                    case 6:
+                        iconUrl = iconD6;
+                        break;
+                    case 4:
+                        iconUrl = iconD4;
+                        break;
+                    case 20:
+                    default:
+                        iconUrl = iconD20;
+                        break;
+                    
+                }
                 addDiceButtonToDom(iconUrl, id, "Roll the damage dice !", element, style, true, browserManager, dice, numberOfDice, diceKind, mod);
             }   
             catch(e)

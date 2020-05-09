@@ -40,7 +40,32 @@
       "icons/d20-16.png",
       "icons/d20-32.png",
       "icons/d20-48.png",
-      "icons/d20-96.png"
+      "icons/d20-96.png",
+
+      "icons/d12-16.png",
+      "icons/d12-32.png",
+      "icons/d12-48.png",
+      "icons/d12-96.png",
+
+      "icons/d10-16.png",
+      "icons/d10-32.png",
+      "icons/d10-48.png",
+      "icons/d10-96.png",
+
+      "icons/d8-16.png",
+      "icons/d8-32.png",
+      "icons/d8-48.png",
+      "icons/d8-96.png",
+
+      "icons/d6-16.png",
+      "icons/d6-32.png",
+      "icons/d6-48.png",
+      "icons/d6-96.png",
+
+      "icons/d4-16.png",
+      "icons/d4-32.png",
+      "icons/d4-48.png",
+      "icons/d4-96.png"
     ],
 
     "applications": {
