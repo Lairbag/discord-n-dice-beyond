@@ -38,10 +38,7 @@ J'ai plusieurs chantier en tête :
 - gérer les changements d'onglet d'action (desktop)
 - gérer l'ajout des dés lors de l'utilisation du menu de navigation rapide (mobile)
 - Recharger automatiquement l'onglet D&D Beyond lors du changement de configuration
-- Gérer les dés de dégat/repos
-- DiceParser non obligatoire
+- Gérer les dés de repos
 - Avoir l'option de lancer un dés avec avantage/désavantage
-- configuration de la couleur du dés affiché sur D&D Beyond
 - un peu de style sur la fenêtre de configuration
 - possibilité de lancer plusieur dés facilement
-- possibilité de lancer d'autres type de dés
