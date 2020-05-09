@@ -29,45 +29,52 @@ function addDice(){
         addDamageDice(browserManager, dice);
     }
 
-    document.querySelector("[class*='-primary-box__tab--actions']").onclick = function(){
-        setTimeout(function() {
-            
-            addDamageDice(browserManager, dice);
-            document.querySelectorAll("[class*='-tab-options__header']").forEach(element => {  
-                element.onclick = function(){
-                    setTimeout(function() {
-                        addDamageDice(browserManager, dice);
-                    }, 1000);            
-                }
-            });
-
-        }, 1000);     
-    };
-
-    document.querySelectorAll("[class*='-tab-options__header']").forEach(element => {  
-        element.onclick = function(){
+    var actionsTab = document.querySelector("[class*='-primary-box__tab--actions']");
+    var optionsTab = document.querySelectorAll("[class*='-tab-options__header']");
+    if(actionsTab){
+        actionsTab.onclick = function(){
             setTimeout(function() {
+                
                 addDamageDice(browserManager, dice);
-            }, 1000);            
-        }
-    });
+                if(optionsTab){
+                    optionsTab.forEach(element => {  
+                        element.onclick = function(){
+                            setTimeout(function() {
+                                addDamageDice(browserManager, dice);
+                            }, 1000);            
+                        }
+                    });
+                }
+    
+            }, 1000);     
+        };
+    }
+
+    if(optionsTab){
+        optionsTab.forEach(element => {  
+            element.onclick = function(){
+                setTimeout(function() {
+                    addDamageDice(browserManager, dice);
+                }, 1000);            
+            }
+        });
+    }
 }
 
 function addSkillDice(browserManager, dice){
     var iconUrl = browserManager.extensionGetUrl("./icons/d20-16.png");    
-    var style = "cursor: pointer; z-index 60002";
+    var style = "cursor: pointer; z-index: 60002";
     var i =0;
-    var patt = new RegExp("^[0-9]*");
+
     document.querySelectorAll("[class*='-signed-number']").forEach(element => {
         var skillMod = "";
         element.childNodes.forEach(child =>{
-            if(patt.test(child.innerText)){
-                skillMod += patt.exec(child.innerText)[0];
-            }
+            if(child.innerText)
+                skillMod += child.innerText;
         });      
 
         if(skillMod !==""){
-            var id = "diceButton_skill_"+(i++);   
+            var id = "diceButton_skill_"+(i++);
             addDiceButtonToDom(iconUrl, id, "Roll the skill dice !", element, style, true, browserManager, dice, 1, 20, skillMod);
         }        
     });
@@ -112,7 +119,7 @@ function addDamageDice(browserManager, dice){
 function addMainDie(browserManager, dice){    
     var iconUrl = browserManager.extensionGetUrl("./icons/d20-48.png");
     var parent = document.querySelector("#site-main");
-    var style = "cursor: pointer; position: fixed; bottom: 5px; left: 5px; z-index 60002";
+    var style = "cursor: pointer; position: fixed; bottom: 5px; left: 5px; z-index: 60002";
 
     addDiceButtonToDom(iconUrl, "mainDieButton", "Roll it !", parent, style, false, browserManager, dice, 1, 20, null);
 }
