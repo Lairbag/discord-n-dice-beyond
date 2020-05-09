@@ -4,7 +4,7 @@ function initDiscordNDiceBeyond(){
   
     var millisecondsToWait = 3000;
     setTimeout(function() {
-        var skillsLoaded = document.querySelectorAll(".ct-signed-number").length > 0;
+        var skillsLoaded = document.querySelectorAll("[class*='-signed-number']").length > 0;
         if(skillsLoaded)
         {
             addDice();
@@ -29,13 +29,12 @@ function addDice(){
         addDamageDice(browserManager, dice);
     }
 
-    document.querySelector(".ct-primary-box__tab--actions").onclick = function(){
+    document.querySelector("[class*='-primary-box__tab--actions']").onclick = function(){
         setTimeout(function() {
             
             addDamageDice(browserManager, dice);
-            document.querySelectorAll('.ct-tab-options__header').forEach(element => {  
+            document.querySelectorAll("[class*='-tab-options__header']").forEach(element => {  
                 element.onclick = function(){
-                    console.log("click 2");
                     setTimeout(function() {
                         addDamageDice(browserManager, dice);
                     }, 1000);            
@@ -45,9 +44,8 @@ function addDice(){
         }, 1000);     
     };
 
-    document.querySelectorAll('.ct-tab-options__header').forEach(element => {  
+    document.querySelectorAll("[class*='-tab-options__header']").forEach(element => {  
         element.onclick = function(){
-            console.log("click 2");
             setTimeout(function() {
                 addDamageDice(browserManager, dice);
             }, 1000);            
@@ -59,14 +57,19 @@ function addSkillDice(browserManager, dice){
     var iconUrl = browserManager.extensionGetUrl("./icons/d20-16.png");    
     var style = "cursor: pointer; z-index 60002";
     var i =0;
-    document.querySelectorAll(".ct-signed-number").forEach(element => {
+    var patt = new RegExp("^[0-9]*");
+    document.querySelectorAll("[class*='-signed-number']").forEach(element => {
         var skillMod = "";
         element.childNodes.forEach(child =>{
-            skillMod += child.innerText;
-        });
+            if(patt.test(child.innerText)){
+                skillMod += patt.exec(child.innerText)[0];
+            }
+        });      
 
-        var id = "diceButton_skill_"+(i++);   
-        addDiceButtonToDom(iconUrl, id, "Roll the skill dice !", element, style, true, browserManager, dice, 1, 20, skillMod);
+        if(skillMod !==""){
+            var id = "diceButton_skill_"+(i++);   
+            addDiceButtonToDom(iconUrl, id, "Roll the skill dice !", element, style, true, browserManager, dice, 1, 20, skillMod);
+        }        
     });
 }
 
@@ -75,7 +78,7 @@ function addDamageDice(browserManager, dice){
     var style = "cursor: pointer; display: inline-block";
 
     var i =0;
-    document.querySelectorAll(".ct-damage__value").forEach(element => {
+    document.querySelectorAll("[class*='-damage__value']").forEach(element => {
         var patt = new RegExp("^[0-9]*d[0-9]*[+-][0-9]*");
         if(patt.test(element.innerHTML))
         {         
