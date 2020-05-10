@@ -23,7 +23,8 @@ function insertStyle(){
     + ".mainDiceContainer { cursor: pointer; position: fixed;left: 5px; z-index: 60002;opacity: 45%; }"
     + ".mainDiceContainer:hover { opacity: 100%; }"
     + ".damageDice { cursor: pointer; display: inline-block; }"
-    + ".skillDice { cursor: pointer; z-index: 60002 }"
+    + ".shortRestDice { cursor: pointer; display: inline-block; }"
+    + ".skillDice { cursor: pointer; z-index: 60001 }"
     + "</style>"
     document.querySelector("body").insertAdjacentHTML("beforeend", style); 
 }
@@ -34,12 +35,18 @@ function addDice(){
 
     addAllMainDice(browserManager, dice);
     addSkillDice(browserManager, dice);
-    adddamageDice(browserManager, dice);
+    addDamageDice(browserManager, dice);
 
     window.onresize = function(){
         addSkillDice(browserManager, dice);
-        adddamageDice(browserManager, dice);
+        addDamageDice(browserManager, dice);
     }
+
+    document.querySelector("[class*='-character-header-tablet__group--short-rest'] div").onclick = function(){
+        setTimeout(function() {                
+            addShortRestDice(browserManager, dice);
+        }, 1000);    
+    };
 
     var actionsTab = document.querySelector("[class*='-primary-box__tab--actions']");
     var optionsTab = document.querySelectorAll("[class*='-tab-options__header']");
@@ -47,12 +54,12 @@ function addDice(){
         actionsTab.onclick = function(){
             setTimeout(function() {
                 
-                adddamageDice(browserManager, dice);
+                addDamageDice(browserManager, dice);
                 if(optionsTab){
                     optionsTab.forEach(element => {  
                         element.onclick = function(){
                             setTimeout(function() {
-                                adddamageDice(browserManager, dice);
+                                addDamageDice(browserManager, dice);
                             }, 1000);            
                         }
                     });
@@ -66,7 +73,7 @@ function addDice(){
         optionsTab.forEach(element => {  
             element.onclick = function(){
                 setTimeout(function() {
-                    adddamageDice(browserManager, dice);
+                    addDamageDice(browserManager, dice);
                 }, 1000);            
             }
         });
@@ -78,20 +85,91 @@ function addSkillDice(browserManager, dice){
     var i =0;
 
     document.querySelectorAll("[class*='-signed-number']").forEach(element => {
-        var skillMod = "";
-        element.childNodes.forEach(child =>{
-            if(child.innerText)
-                skillMod += child.innerText;
-        });      
 
-        if(skillMod !==""){
-            var id = "diceButton_skill_"+(i++);
-            addDiceButtonToDom(iconUrl, id, "Roll the skill dice !", element, "", "skillDice", true, browserManager, dice, 1, 20, skillMod);
-        }        
+        var style = window.getComputedStyle(element);
+        var isHidden = (style.display === 'none');
+        if(!isHidden){
+            var skillMod = "";
+            element.childNodes.forEach(child =>{
+                if(child.innerText)
+                    skillMod += child.innerText;
+            });      
+
+            if(skillMod !==""){
+                var id = "diceButton_skill_"+(i++);
+                addDiceButtonToDom(iconUrl, id, "Roll the skill dice !", element, "", "skillDice", true, browserManager, dice, 1, 20, skillMod);
+            }        
+        }    
     });
 }
 
-function adddamageDice(browserManager, dice){    
+function addShortRestDice(browserManager, dice){    
+    var iconD20 = browserManager.extensionGetUrl("./icons/d20-16.png");
+    var iconD12 = browserManager.extensionGetUrl("./icons/d12-16.png");
+    var iconD10 = browserManager.extensionGetUrl("./icons/d10-16.png");
+    var iconD8 = browserManager.extensionGetUrl("./icons/d8-16.png");
+    var iconD6 = browserManager.extensionGetUrl("./icons/d6-16.png");
+    var iconD4 = browserManager.extensionGetUrl("./icons/d4-16.png");
+
+    var i =0;
+    document.querySelectorAll("[class*='-reset-pane__hitdie-heading']").forEach(element => {
+        var extractDiceArray = element.innerHTML.match("[0-9]*d[0-9]*[+-][0-9]*");
+        var shortRestDice = extractDiceArray && extractDiceArray.length == 1 ? extractDiceArray[0] : null;
+        if(shortRestDice)
+        {         
+            try{
+                var numberOfDice = 1;
+                patt = new RegExp("^[0-9]*");
+                if(patt.test(shortRestDice)){
+                    numberOfDice = patt.exec(shortRestDice)[0];
+                }
+    
+                patt = new RegExp("d[0-9]*");
+                var diceKind = parseInt(patt.exec(shortRestDice)[0].substr(1));
+    
+                var mod = "";
+                patt = new RegExp("[+-][0-9]*");
+                if(patt.test(shortRestDice)){
+                    mod = patt.exec(shortRestDice);
+                }
+                
+                var id = "diceButton_shortRest_"+(i++);
+                var iconUrl = null;
+                switch(diceKind)
+                {
+
+                    case 12:
+                        iconUrl = iconD12;
+                        break;
+                    case 10:
+                        iconUrl = iconD10;
+                        break;
+                    case 8:
+                        iconUrl = iconD8;
+                        break;
+                    case 6:
+                        iconUrl = iconD6;
+                        break;
+                    case 4:
+                        iconUrl = iconD4;
+                        break;
+                    case 20:
+                    default:
+                        iconUrl = iconD20;
+                        break;
+                    
+                }
+                addDiceButtonToDom(iconUrl, id, "Roll the short rest dice !", element, "", "shortRestDice", true, browserManager, dice, numberOfDice, diceKind, mod);
+            }   
+            catch(e)
+            {
+                console.error(e);
+            }            
+        }          
+    });
+}
+
+function addDamageDice(browserManager, dice){    
     var iconD20 = browserManager.extensionGetUrl("./icons/d20-16.png");
     var iconD12 = browserManager.extensionGetUrl("./icons/d12-16.png");
     var iconD10 = browserManager.extensionGetUrl("./icons/d10-16.png");

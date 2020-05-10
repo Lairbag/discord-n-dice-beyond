@@ -35,9 +35,12 @@ Il suffit d'enregistrer l'URL du webhook et tout est prêt pour jouer !
 
 # A venir
 J'ai plusieurs chantier en tête :
+- nettoyer le code (dés de dommage/dés de repos) 
+- ne plus afficher les dés en trop dans le menu déroulant
 - gérer les changements d'onglet d'action (desktop)
 - gérer l'ajout des dés lors de l'utilisation du menu de navigation rapide (mobile)
-- Recharger automatiquement l'onglet D&D Beyond lors du changement de configuration
-- Gérer les dés de repos
+- recharger automatiquement l'onglet D&D Beyond lors du changement de configuration
 - Avoir l'option de lancer un dés avec avantage/désavantage
 - possibilité de lancer plusieur dés facilement
+- améliorer l'affichage du résultat du jet de dés dans le navigateur
+- ajouter un mode Discord sans Dice Parser et afficher le résultat dans le navigateur
