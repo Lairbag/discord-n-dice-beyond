@@ -2,6 +2,8 @@ document.addEventListener('DOMContentLoaded', initDiscordNDiceBeyond());
 
 function initDiscordNDiceBeyond(){
   
+    insertStyle();
+
     var millisecondsToWait = 3000;
     setTimeout(function() {
         var skillsLoaded = document.querySelectorAll("[class*='-signed-number']").length > 0;
@@ -16,17 +18,27 @@ function initDiscordNDiceBeyond(){
     }, millisecondsToWait);
 }
 
+function insertStyle(){
+    var style = "<style>"
+    + ".mainDiceContainer { cursor: pointer; position: fixed;left: 5px; z-index: 60002;opacity: 45%; }"
+    + ".mainDiceContainer:hover { opacity: 100%; }"
+    + ".damageDice { cursor: pointer; display: inline-block; }"
+    + ".skillDice { cursor: pointer; z-index: 60002 }"
+    + "</style>"
+    document.querySelector("body").insertAdjacentHTML("beforeend", style); 
+}
+
 function addDice(){
     var browserManager = new BrowserManagerFactory().manager;
     var dice = new Dice();
 
     addAllMainDice(browserManager, dice);
     addSkillDice(browserManager, dice);
-    addDamageDice(browserManager, dice);
+    adddamageDice(browserManager, dice);
 
     window.onresize = function(){
         addSkillDice(browserManager, dice);
-        addDamageDice(browserManager, dice);
+        adddamageDice(browserManager, dice);
     }
 
     var actionsTab = document.querySelector("[class*='-primary-box__tab--actions']");
@@ -35,12 +47,12 @@ function addDice(){
         actionsTab.onclick = function(){
             setTimeout(function() {
                 
-                addDamageDice(browserManager, dice);
+                adddamageDice(browserManager, dice);
                 if(optionsTab){
                     optionsTab.forEach(element => {  
                         element.onclick = function(){
                             setTimeout(function() {
-                                addDamageDice(browserManager, dice);
+                                adddamageDice(browserManager, dice);
                             }, 1000);            
                         }
                     });
@@ -54,7 +66,7 @@ function addDice(){
         optionsTab.forEach(element => {  
             element.onclick = function(){
                 setTimeout(function() {
-                    addDamageDice(browserManager, dice);
+                    adddamageDice(browserManager, dice);
                 }, 1000);            
             }
         });
@@ -63,7 +75,6 @@ function addDice(){
 
 function addSkillDice(browserManager, dice){
     var iconUrl = browserManager.extensionGetUrl("./icons/d20-16.png");    
-    var style = "cursor: pointer; z-index: 60002";
     var i =0;
 
     document.querySelectorAll("[class*='-signed-number']").forEach(element => {
@@ -75,20 +86,18 @@ function addSkillDice(browserManager, dice){
 
         if(skillMod !==""){
             var id = "diceButton_skill_"+(i++);
-            addDiceButtonToDom(iconUrl, id, "Roll the skill dice !", element, style, true, browserManager, dice, 1, 20, skillMod);
+            addDiceButtonToDom(iconUrl, id, "Roll the skill dice !", element, "", "skillDice", true, browserManager, dice, 1, 20, skillMod);
         }        
     });
 }
 
-function addDamageDice(browserManager, dice){    
+function adddamageDice(browserManager, dice){    
     var iconD20 = browserManager.extensionGetUrl("./icons/d20-16.png");
     var iconD12 = browserManager.extensionGetUrl("./icons/d12-16.png");
     var iconD10 = browserManager.extensionGetUrl("./icons/d10-16.png");
     var iconD8 = browserManager.extensionGetUrl("./icons/d8-16.png");
     var iconD6 = browserManager.extensionGetUrl("./icons/d6-16.png");
     var iconD4 = browserManager.extensionGetUrl("./icons/d4-16.png");
-
-    var style = "cursor: pointer; display: inline-block";
 
     var i =0;
     document.querySelectorAll("[class*='-damage__value']").forEach(element => {
@@ -137,7 +146,7 @@ function addDamageDice(browserManager, dice){
                         break;
                     
                 }
-                addDiceButtonToDom(iconUrl, id, "Roll the damage dice !", element, style, true, browserManager, dice, numberOfDice, diceKind, mod);
+                addDiceButtonToDom(iconUrl, id, "Roll the damage dice !", element, "", "damageDice", true, browserManager, dice, numberOfDice, diceKind, mod);
             }   
             catch(e)
             {
@@ -160,11 +169,11 @@ function addAllMainDice(browserManager, dice){
 
 function addMainDice(diceKind, bottomPosition, browserManager, dice, parent){
     var iconUrl = browserManager.extensionGetUrl("./icons/d"+diceKind+"-48.png");
-    var style = "cursor: pointer; position: fixed; bottom: "+bottomPosition+"px; left: 5px; z-index: 60002;opacity: 65%";
-    addDiceButtonToDom(iconUrl, "mainD"+diceKind+"Button", "Roll it !", parent, style, false, browserManager, dice, 1, diceKind, null);
+    var style = "bottom: "+bottomPosition+"px;";
+    addDiceButtonToDom(iconUrl, "mainD"+diceKind+"Button", "Roll it !", parent, style, "mainDiceContainer", false, browserManager, dice, 1, diceKind, null);
 }
 
-function addDiceButtonToDom(iconUrl, id, alt, parent, style, shouldHideSideBar, browserManager, dice, numberOfDice, diceKind, mod){
+function addDiceButtonToDom(iconUrl, id, alt, parent, style, className, shouldHideSideBar, browserManager, dice, numberOfDice, diceKind, mod){
     var self = this;
     self.hideSidebar = function(){
         var sideBar = document.querySelector('[data-original-title="Hide Sidebar"]');
@@ -181,7 +190,7 @@ function addDiceButtonToDom(iconUrl, id, alt, parent, style, shouldHideSideBar, 
     }
 
     if(document.querySelector("#"+id) === null){
-        var htmlButton = '<div id="'+id+'" style="'+style+'"><img src="'+iconUrl+'" alt="'+alt+'"></img></div>';
+        var htmlButton = '<div class="'+className+'" id="'+id+'" style="'+style+'"><img src="'+iconUrl+'" alt="'+alt+'"></img></div>';
 
         parent.insertAdjacentHTML("beforeend", htmlButton); 
 
