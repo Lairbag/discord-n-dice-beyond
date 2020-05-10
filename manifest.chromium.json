@@ -65,6 +65,8 @@
       "icons/d4-16.png",
       "icons/d4-32.png",
       "icons/d4-48.png",
-      "icons/d4-96.png"
+      "icons/d4-96.png",
+
+      "popup/header.png"
     ]
   }

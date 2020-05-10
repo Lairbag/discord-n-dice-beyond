@@ -40,5 +40,4 @@ J'ai plusieurs chantier en tête :
 - Recharger automatiquement l'onglet D&D Beyond lors du changement de configuration
 - Gérer les dés de repos
 - Avoir l'option de lancer un dés avec avantage/désavantage
-- un peu de style sur la fenêtre de configuration
 - possibilité de lancer plusieur dés facilement
