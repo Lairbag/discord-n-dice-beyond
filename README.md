@@ -36,7 +36,6 @@ Il suffit d'enregistrer l'URL du webhook et tout est prêt pour jouer !
 # A venir
 J'ai plusieurs chantier en tête :
 - nettoyer le code (dés de dommage/dés de repos) 
-- ne plus afficher les dés en trop dans le menu déroulant
 - gérer les changements d'onglet d'action (desktop)
 - gérer l'ajout des dés lors de l'utilisation du menu de navigation rapide (mobile)
 - recharger automatiquement l'onglet D&D Beyond lors du changement de configuration

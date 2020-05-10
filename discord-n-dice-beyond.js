@@ -24,7 +24,7 @@ function insertStyle(){
     + ".mainDiceContainer:hover { opacity: 100%; }"
     + ".damageDice { cursor: pointer; display: inline-block; }"
     + ".shortRestDice { cursor: pointer; display: inline-block; }"
-    + ".skillDice { cursor: pointer; z-index: 60001 }"
+    + ".skillDice { cursor: pointer; }"
     + "</style>"
     document.querySelector("body").insertAdjacentHTML("beforeend", style); 
 }
@@ -85,20 +85,15 @@ function addSkillDice(browserManager, dice){
     var i =0;
 
     document.querySelectorAll("[class*='-signed-number']").forEach(element => {
+        var skillMod = "";
+        element.childNodes.forEach(child =>{
+            if(child.innerText)
+                skillMod += child.innerText;
+        });      
 
-        var style = window.getComputedStyle(element);
-        var isHidden = (style.display === 'none');
-        if(!isHidden){
-            var skillMod = "";
-            element.childNodes.forEach(child =>{
-                if(child.innerText)
-                    skillMod += child.innerText;
-            });      
-
-            if(skillMod !==""){
-                var id = "diceButton_skill_"+(i++);
-                addDiceButtonToDom(iconUrl, id, "Roll the skill dice !", element, "", "skillDice", true, browserManager, dice, 1, 20, skillMod);
-            }        
+        if(skillMod !==""){
+            var id = "diceButton_skill_"+(i++);
+            addDiceButtonToDom(iconUrl, id, "Roll the skill dice !", element, "", "skillDice", true, browserManager, dice, 1, 20, skillMod);
         }    
     });
 }
