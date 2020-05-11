@@ -1,20 +1,27 @@
 # Discord&Dice Beyond
+![](popup/header.png)
 Webextension that allow yout to roll dice (with dice parser) into your discord channel from your D&amp;D Beyond character sheet
 
-![](Presentation.png)
 
 # Présentation
 Cette extension (Firefox et Chromium) à pour vocation de simplifier les lancés de dés pour les joueurs utilisant Discord et D&D Beyond.
 
-Différent dés apparaissent en bas à gauche de la fiche de personnage (**il faut être connecté à son compte**). Au clique sur l'un de ces dés, un jet se fera automatiquement sur le salon Discord correspondant.
-Il y a également un dés à côté de chaque compétence pour faire le jet en prenant en compte le modificateur.
+Différent dés apparaissent en bas à gauche de la fiche de personnage (**il faut être connecté à son compte**). Au clique sur l'un de ces dés, un jet se fera automatiquement (plus de détail ci-dessous).
+Il y a également un dés à côté de chaque compétence pour faire le jet en prenant en compte le modificateur. Il en est de même pour les jets d'attaque ou le repos court.
 
 Petit plus, le nom et l'avatar du personnage seront visible sur Discord.
 
+![](Presentation.png)
+
 Concernant le lancé de dé, il y a trois options :
-- Sans Discord, affichage du résultat dans le navigateur
-- Avec Discord avec DiceParser
-- Avec Discord et DiceParser
+- Sans Discord, affichage du résultat dans le navigateur. Le jet est décomposé avec chaque résultat de dés, le modificateur et le résultat total.
+![](inBrowser.png)
+
+- Avec Discord sans DiceParser, l'affichage est le même que lorsqu'il n'y a pas Discord de configuré.
+![](inDiscordWithoutDiceParser)
+
+- Avec Discord et DiceParser, l'affichage comprend l'envoie de la commande puis le résultat par DiceParser
+![](inDiscordWitDiceParser)
 
 ![](demo-roll-a-dice.gif)
 
