@@ -99,14 +99,6 @@ function addSkillDice(browserManager, dice){
 }
 
 function addShortRestDice(browserManager, dice){    
-    var iconD100 = browserManager.extensionGetUrl("./icons/d100-32.png");
-    var iconD20 = browserManager.extensionGetUrl("./icons/d20-32.png");
-    var iconD12 = browserManager.extensionGetUrl("./icons/d12-32.png");
-    var iconD10 = browserManager.extensionGetUrl("./icons/d10-32.png");
-    var iconD8 = browserManager.extensionGetUrl("./icons/d8-32.png");
-    var iconD6 = browserManager.extensionGetUrl("./icons/d6-32.png");
-    var iconD4 = browserManager.extensionGetUrl("./icons/d4-32.png");
-
     var i =0;
     document.querySelectorAll("[class*='-reset-pane__hitdie-heading']").forEach(element => {
         var extractDiceArray = element.innerHTML.match("[0-9]*d[0-9]*[+-][0-9]*");
@@ -130,33 +122,7 @@ function addShortRestDice(browserManager, dice){
                 }
                 
                 var id = "diceButton_shortRest_"+(i++);
-                var iconUrl = null;
-                switch(diceKind)
-                {
-                    case 100:
-                        iconUrl = iconD100;
-                        break;
-                    case 12:
-                        iconUrl = iconD12;
-                        break;
-                    case 10:
-                        iconUrl = iconD10;
-                        break;
-                    case 8:
-                        iconUrl = iconD8;
-                        break;
-                    case 6:
-                        iconUrl = iconD6;
-                        break;
-                    case 4:
-                        iconUrl = iconD4;
-                        break;
-                    case 20:
-                    default:
-                        iconUrl = iconD20;
-                        break;
-                    
-                }
+                var iconUrl = getDiceIconUrl(browserManager, diceKind, "32")
                 addDiceButtonToDom(iconUrl, id, "Roll the short rest dice !", element, "", "shortRestDice", false, browserManager, dice, numberOfDice, diceKind, mod);
             }   
             catch(e)
@@ -167,15 +133,7 @@ function addShortRestDice(browserManager, dice){
     });
 }
 
-function addDamageDice(browserManager, dice){    
-    var iconD100 = browserManager.extensionGetUrl("./icons/d100-16.png");
-    var iconD20 = browserManager.extensionGetUrl("./icons/d20-16.png");
-    var iconD12 = browserManager.extensionGetUrl("./icons/d12-16.png");
-    var iconD10 = browserManager.extensionGetUrl("./icons/d10-16.png");
-    var iconD8 = browserManager.extensionGetUrl("./icons/d8-16.png");
-    var iconD6 = browserManager.extensionGetUrl("./icons/d6-16.png");
-    var iconD4 = browserManager.extensionGetUrl("./icons/d4-16.png");
-
+function addDamageDice(browserManager, dice){
     var i =0;
     document.querySelectorAll("[class*='-damage__value']").forEach(element => {
         var patt = new RegExp("^[0-9]*d[0-9]*[+-][0-9]*");
@@ -198,33 +156,7 @@ function addDamageDice(browserManager, dice){
                 }
                 
                 var id = "diceButton_damage_"+(i++);
-                var iconUrl = null;
-                switch(diceKind)
-                {
-                    case 100:
-                        iconUrl = iconD100;
-                        break;
-                    case 12:
-                        iconUrl = iconD12;
-                        break;
-                    case 10:
-                        iconUrl = iconD10;
-                        break;
-                    case 8:
-                        iconUrl = iconD8;
-                        break;
-                    case 6:
-                        iconUrl = iconD6;
-                        break;
-                    case 4:
-                        iconUrl = iconD4;
-                        break;
-                    case 20:
-                    default:
-                        iconUrl = iconD20;
-                        break;
-                    
-                }
+                var iconUrl = getDiceIconUrl(browserManager, diceKind, "16");
                 addDiceButtonToDom(iconUrl, id, "Roll the damage dice !", element, "", "damageDice", true, browserManager, dice, numberOfDice, diceKind, mod);
             }   
             catch(e)
@@ -247,7 +179,7 @@ function addAllMainDice(browserManager, dice){
 }
 
 function addMainDice(diceKind, bottomPosition, browserManager, dice, parent){
-    var iconUrl = browserManager.extensionGetUrl("./icons/d"+diceKind+"-48.png");
+    var iconUrl = getDiceIconUrl(browserManager, diceKind, "48");
     var style = "bottom: "+bottomPosition+"px;";
     addDiceButtonToDom(iconUrl, "mainD"+diceKind+"Button", "Roll it !", parent, style, "mainDiceContainer", false, browserManager, dice, 1, diceKind, null);
 }
@@ -278,5 +210,34 @@ function addDiceButtonToDom(iconUrl, id, alt, parent, style, className, shouldHi
                 self.hideSidebar();
             dice.roll(browserManager, numberOfDice, diceKind, mod);
         };
+    }
+}
+
+function getDiceIconUrl(browserManager, diceKind, size){
+    var iconD100 = browserManager.extensionGetUrl("./icons/d100-"+size+".png");
+    var iconD20 = browserManager.extensionGetUrl("./icons/d20-"+size+".png");
+    var iconD12 = browserManager.extensionGetUrl("./icons/d12-"+size+".png");
+    var iconD10 = browserManager.extensionGetUrl("./icons/d10-"+size+".png");
+    var iconD8 = browserManager.extensionGetUrl("./icons/d8-"+size+".png");
+    var iconD6 = browserManager.extensionGetUrl("./icons/d6-"+size+".png");
+    var iconD4 = browserManager.extensionGetUrl("./icons/d4-"+size+".png");
+    
+    switch(diceKind)
+    {
+        case 100:
+            return iconD100;
+        case 12:
+            return iconD12;
+        case 10:
+            return iconD10;
+        case 8:
+            return iconD8;
+        case 6:
+            return iconD6;
+        case 4:
+            return iconD4;
+        case 20:
+        default:
+            return iconD20;        
     }
 }
