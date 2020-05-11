@@ -34,7 +34,7 @@ Ci-dessous un gif de démonstration qui va montrer 4 choses :
 ![](demo-roll-a-dice.gif)
 
 # Configuration de Discord
-Pour que l'extension fonctionne, elle a besoin d'un point d'entrée pour communiquer avec Discord.
+Pour que l'extension fonctionne avec Discord, il lui faut un point d'entrée permettant la communication.
 Ce point d'entrée s'appelle un Webhook, il se matérialise par une simple URL.
 Il ne doit être ajouté que dans le salon où il y aura des lancés de dés.
 
