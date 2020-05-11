@@ -99,6 +99,7 @@ function addSkillDice(browserManager, dice){
 }
 
 function addShortRestDice(browserManager, dice){    
+    var iconD100 = browserManager.extensionGetUrl("./icons/d100-16.png");
     var iconD20 = browserManager.extensionGetUrl("./icons/d20-16.png");
     var iconD12 = browserManager.extensionGetUrl("./icons/d12-16.png");
     var iconD10 = browserManager.extensionGetUrl("./icons/d10-16.png");
@@ -132,7 +133,9 @@ function addShortRestDice(browserManager, dice){
                 var iconUrl = null;
                 switch(diceKind)
                 {
-
+                    case 100:
+                        iconUrl = iconD100;
+                        break;
                     case 12:
                         iconUrl = iconD12;
                         break;
@@ -165,6 +168,7 @@ function addShortRestDice(browserManager, dice){
 }
 
 function addDamageDice(browserManager, dice){    
+    var iconD100 = browserManager.extensionGetUrl("./icons/d100-16.png");
     var iconD20 = browserManager.extensionGetUrl("./icons/d20-16.png");
     var iconD12 = browserManager.extensionGetUrl("./icons/d12-16.png");
     var iconD10 = browserManager.extensionGetUrl("./icons/d10-16.png");
@@ -197,7 +201,9 @@ function addDamageDice(browserManager, dice){
                 var iconUrl = null;
                 switch(diceKind)
                 {
-
+                    case 100:
+                        iconUrl = iconD100;
+                        break;
                     case 12:
                         iconUrl = iconD12;
                         break;
@@ -231,13 +237,13 @@ function addDamageDice(browserManager, dice){
 
 function addAllMainDice(browserManager, dice){        
     var parent = document.querySelector("#site-main");
-
-    addMainDice(20, 5, browserManager, dice, parent);
-    addMainDice(12, 55, browserManager, dice, parent);
-    addMainDice(10, 105, browserManager, dice, parent);
-    addMainDice(8, 155, browserManager, dice, parent);
-    addMainDice(6, 205, browserManager, dice, parent);
-    addMainDice(4, 255, browserManager, dice, parent);
+    addMainDice(100, 5, browserManager, dice, parent);
+    addMainDice(20, 55, browserManager, dice, parent);
+    addMainDice(12, 105, browserManager, dice, parent);
+    addMainDice(10, 155, browserManager, dice, parent);
+    addMainDice(8, 205, browserManager, dice, parent);
+    addMainDice(6, 255, browserManager, dice, parent);
+    addMainDice(4, 305, browserManager, dice, parent);
 }
 
 function addMainDice(diceKind, bottomPosition, browserManager, dice, parent){
