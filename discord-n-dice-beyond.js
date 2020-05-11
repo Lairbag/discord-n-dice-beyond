@@ -4,7 +4,7 @@ function initDiscordNDiceBeyond(){
   
     insertStyle();
 
-    var millisecondsToWait = 3000;
+    var millisecondsToWait = 1000;
     setTimeout(function() {
         var skillsLoaded = document.querySelectorAll("[class*='-signed-number']").length > 0;
         if(skillsLoaded)
@@ -42,7 +42,7 @@ function addDice(){
         addDamageDice(browserManager, dice);
     }
 
-    var millisecondsToWait = 1000;
+    var millisecondsToWait = 300;
     document.querySelector("body").onclick = function(){
         setTimeout(function() {      
             addSkillDice(browserManager, dice);
@@ -170,7 +170,7 @@ function addDiceButtonToDom(iconUrl, id, alt, parent, style, className, shouldHi
             sideBar.click();
         }
         else{
-            var millisecondsToWait = 1000;
+            var millisecondsToWait = 800;
             setTimeout(function() {
                 hideSidebar();
             }, millisecondsToWait);
