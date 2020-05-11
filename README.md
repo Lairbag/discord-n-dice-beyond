@@ -18,10 +18,10 @@ Concernant le lancé de dé, il y a trois options :
 ![](inBrowser.png)
 
 - Avec Discord sans DiceParser, l'affichage est le même que lorsqu'il n'y a pas Discord de configuré.
-![](inDiscordWithoutDiceParser)
+![](inDiscordWithoutDiceParser.png)
 
 - Avec Discord et DiceParser, l'affichage comprend l'envoie de la commande puis le résultat par DiceParser
-![](inDiscordWitDiceParser)
+![](inDiscordWitDiceParser.png)
 
 ![](demo-roll-a-dice.gif)
 
