@@ -42,46 +42,19 @@ function addDice(){
         addDamageDice(browserManager, dice);
     }
 
+    var millisecondsToWait = 1000;
+    document.querySelector("body").onclick = function(){
+        setTimeout(function() {      
+            addSkillDice(browserManager, dice);
+            addDamageDice(browserManager, dice);
+        }, millisecondsToWait);
+    }
+
     document.querySelector("[class*='--short-rest'] div").onclick = function(){
         setTimeout(function() {                
             addShortRestDice(browserManager, dice);
-        }, 1000);    
+        }, millisecondsToWait);    
     };
-
-    var actionsTab = document.querySelector("[class*='-primary-box__tab--actions']");    
-    if(actionsTab){
-        actionsTab.onclick = function(){
-            setTimeout(function() {
-                addSkillDice(browserManager, dice);
-                addDamageDice(browserManager, dice);
-
-                var optionsTab = document.querySelectorAll("[class*='-tab-options__header']");
-                if(optionsTab){
-                    optionsTab.forEach(element => {  
-                        element.onclick = function(){
-                            setTimeout(function() {
-                                addSkillDice(browserManager, dice);
-                                addDamageDice(browserManager, dice);
-                            }, 1000);            
-                        }
-                    });
-                }
-    
-            }, 1000);     
-        };
-    }
-
-    var optionsTab2 = document.querySelectorAll("[class*='-tab-options__header']");
-    if(optionsTab2){
-        optionsTab2.forEach(element => {  
-            element.onclick = function(){
-                setTimeout(function() {
-                    addSkillDice(browserManager, dice);
-                    addDamageDice(browserManager, dice);
-                }, 1000);            
-            }
-        });
-    }
 }
 
 function addSkillDice(browserManager, dice){
