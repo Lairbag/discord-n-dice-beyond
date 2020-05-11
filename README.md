@@ -13,7 +13,7 @@ Petit plus, le nom et l'avatar du personnage seront visible sur Discord.
 
 ![](Presentation.png)
 
-Concernant le lancé de dé, il y a trois options :
+Concernant le lancé de dés, il y a trois options :
 - Sans Discord, affichage du résultat dans le navigateur. Le jet est décomposé avec chaque résultat de dés, le modificateur et le résultat total.
 ![](inBrowser.png)
 
