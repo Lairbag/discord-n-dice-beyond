@@ -42,7 +42,9 @@ Le mieux étant de suivre la procédure fournis par Discord : https://support.di
 
 # Configuration de l'extension
 Après installation de l'extension, un D20 est visible en haut à droite avec les autres extensions.
-Il suffit d'enregistrer l'URL du webhook et tout est prêt pour jouer !
+Au clique, une fenêtre apparait ou il est possible de saisir l'URL du Webhook et de choisir le mode de lancé de dés (voir plus haut).
+
+![](configuration.png)
 
 # Un petit Gif sur la configuration de Discord et de l'extension
 
