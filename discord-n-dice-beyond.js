@@ -42,7 +42,7 @@ function addDice(){
         addDamageDice(browserManager, dice);
     }
 
-    document.querySelector("[class*='-character-header-tablet__group--short-rest'] div").onclick = function(){
+    document.querySelector("[class*='--short-rest'] div").onclick = function(){
         setTimeout(function() {                
             addShortRestDice(browserManager, dice);
         }, 1000);    
@@ -99,13 +99,13 @@ function addSkillDice(browserManager, dice){
 }
 
 function addShortRestDice(browserManager, dice){    
-    var iconD100 = browserManager.extensionGetUrl("./icons/d100-16.png");
-    var iconD20 = browserManager.extensionGetUrl("./icons/d20-16.png");
-    var iconD12 = browserManager.extensionGetUrl("./icons/d12-16.png");
-    var iconD10 = browserManager.extensionGetUrl("./icons/d10-16.png");
-    var iconD8 = browserManager.extensionGetUrl("./icons/d8-16.png");
-    var iconD6 = browserManager.extensionGetUrl("./icons/d6-16.png");
-    var iconD4 = browserManager.extensionGetUrl("./icons/d4-16.png");
+    var iconD100 = browserManager.extensionGetUrl("./icons/d100-32.png");
+    var iconD20 = browserManager.extensionGetUrl("./icons/d20-32.png");
+    var iconD12 = browserManager.extensionGetUrl("./icons/d12-32.png");
+    var iconD10 = browserManager.extensionGetUrl("./icons/d10-32.png");
+    var iconD8 = browserManager.extensionGetUrl("./icons/d8-32.png");
+    var iconD6 = browserManager.extensionGetUrl("./icons/d6-32.png");
+    var iconD4 = browserManager.extensionGetUrl("./icons/d4-32.png");
 
     var i =0;
     document.querySelectorAll("[class*='-reset-pane__hitdie-heading']").forEach(element => {
@@ -157,7 +157,7 @@ function addShortRestDice(browserManager, dice){
                         break;
                     
                 }
-                addDiceButtonToDom(iconUrl, id, "Roll the short rest dice !", element, "", "shortRestDice", true, browserManager, dice, numberOfDice, diceKind, mod);
+                addDiceButtonToDom(iconUrl, id, "Roll the short rest dice !", element, "", "shortRestDice", false, browserManager, dice, numberOfDice, diceKind, mod);
             }   
             catch(e)
             {
