@@ -48,17 +48,19 @@ function addDice(){
         }, 1000);    
     };
 
-    var actionsTab = document.querySelector("[class*='-primary-box__tab--actions']");
-    var optionsTab = document.querySelectorAll("[class*='-tab-options__header']");
+    var actionsTab = document.querySelector("[class*='-primary-box__tab--actions']");    
     if(actionsTab){
         actionsTab.onclick = function(){
             setTimeout(function() {
-                
+                addSkillDice(browserManager, dice);
                 addDamageDice(browserManager, dice);
+
+                var optionsTab = document.querySelectorAll("[class*='-tab-options__header']");
                 if(optionsTab){
                     optionsTab.forEach(element => {  
                         element.onclick = function(){
                             setTimeout(function() {
+                                addSkillDice(browserManager, dice);
                                 addDamageDice(browserManager, dice);
                             }, 1000);            
                         }
@@ -69,10 +71,12 @@ function addDice(){
         };
     }
 
-    if(optionsTab){
-        optionsTab.forEach(element => {  
+    var optionsTab2 = document.querySelectorAll("[class*='-tab-options__header']");
+    if(optionsTab2){
+        optionsTab2.forEach(element => {  
             element.onclick = function(){
                 setTimeout(function() {
+                    addSkillDice(browserManager, dice);
                     addDamageDice(browserManager, dice);
                 }, 1000);            
             }
