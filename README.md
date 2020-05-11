@@ -54,6 +54,6 @@ Au clique, une fenêtre apparait ou il est possible de saisir l'URL du Webhook e
 J'ai plusieurs chantier en tête :
 - recharger automatiquement l'onglet D&D Beyond lors du changement de configuration
 - Avoir l'option de lancer un dés avec avantage/désavantage
-- possibilité de lancer plusieur dés facilement
+- possibilité de lancer plusieurs dés facilement
 - améliorer l'affichage du résultat du jet de dés dans le navigateur
 - ajouter un mode Discord sans Dice Parser et afficher le résultat dans le navigateur
