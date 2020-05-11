@@ -23,6 +23,14 @@ Concernant le lancé de dé, il y a trois options :
 - Avec Discord et DiceParser, l'affichage comprend l'envoie de la commande puis le résultat par DiceParser
 ![](inDiscordWithDiceParser.png)
 
+# Une petit démo ?
+
+Ci-dessous un gif de démonstration qui va montrer 4 choses :
+- un jet simple avec le lancé d'un d100
+- un jet d'attaque avec un d20 et le modificateur associé
+- un jet de dégat avec un d4 et le modificateur associé
+- un jet pour le repos court
+
 ![](demo-roll-a-dice.gif)
 
 # Configuration de Discord
