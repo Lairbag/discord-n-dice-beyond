@@ -41,7 +41,7 @@ Il ne doit être ajouté que dans le salon où il y aura des lancés de dés.
 Le mieux étant de suivre la procédure fournis par Discord : https://support.discordapp.com/hc/fr/articles/228383668-Utiliser-les-Webhooks
 
 # Configuration de l'extension
-Après installation de l'extension, un D20 est visible en haut à droite avec les autres extensions.
+Après installation de l'extension, un d20 est visible en haut à droite avec les autres extensions.
 Au clique, une fenêtre apparait ou il est possible de saisir l'URL du Webhook et de choisir le mode de lancé de dés (voir plus haut).
 
 ![](configuration.png)
