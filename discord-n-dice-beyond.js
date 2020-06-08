@@ -25,10 +25,10 @@ function insertStyle(){
     + ".mainDiceContainer { cursor: pointer; position: fixed; right: 5px; z-index: 60002;opacity: 45%; }"
     + ".mainDiceContainer:hover { opacity: 100%; }"
 
-    + ".moreDiceContainer {opacity: 15%; width: 75px; height: 48px; position: fixed; right: 0px; z-index: 60002;}"
+    + ".moreDiceContainer {opacity: 100%; width: 25px; height: 25px; position: fixed; right: 45px; z-index: 60002;}"
     + ".moreDiceContainer:hover {opacity: 100%;}"
     
-    + ".moreDice {float: left;margin-top:24px; height: 24px; width: 24px; border-radius: 5px; cursor: pointer; z-index: 60003; text-align: center;font-size: 18px; background-color: lightgrey; color: grey}"
+    + ".moreDice {float: left; height: 24px; width: 24px; border-radius: 5px; cursor: pointer; z-index: 60003; text-align: center;font-size: 18px; background-color: lightgrey; color: grey}"
     + ".moreDice:hover {border: 2px solid grey; height: 27px; width: 27px;}"
     
     + ".damageDice { cursor: pointer; display: inline-block; }"

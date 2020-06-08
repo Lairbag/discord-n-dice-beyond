@@ -6,7 +6,8 @@ Webextension that allow yout to roll dice (with dice parser) into your discord c
 # Présentation
 Cette extension (Firefox et Chromium) à pour vocation de simplifier les lancés de dés pour les joueurs utilisant Discord et D&D Beyond.
 
-Différent dés apparaissent en bas à gauche de la fiche de personnage (**il faut être connecté à son compte**). Au clique sur l'un de ces dés, un jet se fera automatiquement (plus de détail ci-dessous).
+Différent dés apparaissent en bas à droite de la fiche de personnage (**il faut être connecté à son compte**). Au clique sur l'un de ces dés, un jet se fera automatiquement (plus de détail ci-dessous).
+Au clique sur le +, une fenêtre permettant de lancer plusieurs dés à la fois va apparaître.
 Il y a également un dés à côté de chaque compétence pour faire le jet en prenant en compte le modificateur. Il en est de même pour les jets d'attaque ou le repos court.
 
 Petit plus, le nom et l'avatar du personnage seront visible sur Discord.
@@ -52,8 +53,6 @@ Au clique, une fenêtre apparait ou il est possible de saisir l'URL du Webhook e
 
 # A venir
 J'ai plusieurs chantier en tête :
-- recharger automatiquement l'onglet D&D Beyond lors du changement de configuration
 - Avoir l'option de lancer un dés avec avantage/désavantage
-- possibilité de lancer plusieurs dés facilement
 - améliorer l'affichage du résultat du jet de dés dans le navigateur
-- ajouter un mode Discord sans Dice Parser et afficher le résultat dans le navigateur
+- possibilité de partager le résultat du dés à d'autres personnes sans passer par Discord
