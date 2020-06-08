@@ -107,17 +107,25 @@ function addMoreDiceModal(browserManager){
 
 function addDice(browserManager){    
     var dice = new Dice();
-
-    addAllMainDice(browserManager, dice);
-    addSkillDice(browserManager, dice);
-    addDamageDice(browserManager, dice);
-
     window.onresize = function(){
+        
+        document.querySelectorAll(".mainDiceContainer").forEach(element => {
+            element.remove();
+        });
+
+        addAllMainDice(browserManager, dice);
         addSkillDice(browserManager, dice);
         addDamageDice(browserManager, dice);
     }
 
     var millisecondsToWait = 300;
+
+    setTimeout(function() {      
+        addAllMainDice(browserManager, dice);
+        addSkillDice(browserManager, dice);
+        addDamageDice(browserManager, dice);
+    }, millisecondsToWait);
+
     document.querySelector("body").onclick = function(){
         setTimeout(function() {      
             addSkillDice(browserManager, dice);
@@ -222,15 +230,18 @@ function addDamageDice(browserManager, dice){
     });
 }
 
-function addAllMainDice(browserManager, dice){        
+function addAllMainDice(browserManager, dice){            
     var parent = document.querySelector("#site-main");
-    addMainDice(100, 5, browserManager, dice, parent);
-    addMainDice(20, 55, browserManager, dice, parent);
-    addMainDice(12, 105, browserManager, dice, parent);
-    addMainDice(10, 155, browserManager, dice, parent);
-    addMainDice(8, 205, browserManager, dice, parent);
-    addMainDice(6, 255, browserManager, dice, parent);
-    addMainDice(4, 305, browserManager, dice, parent);
+
+    var offsetMobileMenu = document.querySelector('body').clientWidth < 1005 ? 50 : 0;
+
+    addMainDice(100, 5+offsetMobileMenu, browserManager, dice, parent);
+    addMainDice(20, 55+offsetMobileMenu, browserManager, dice, parent);
+    addMainDice(12, 105+offsetMobileMenu, browserManager, dice, parent);
+    addMainDice(10, 155+offsetMobileMenu, browserManager, dice, parent);
+    addMainDice(8, 205+offsetMobileMenu, browserManager, dice, parent);
+    addMainDice(6, 255+offsetMobileMenu, browserManager, dice, parent);
+    addMainDice(4, 305+offsetMobileMenu, browserManager, dice, parent);
 }
 
 function addMainDice(diceKind, bottomPosition, browserManager, dice, parent){
